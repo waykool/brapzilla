@@ -8,15 +8,28 @@
 
 import UIKit
 import CoreData
+import Parse
+import Fabric
+import TwitterKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        Parse.setApplicationId("VHYkf5ES5sPSXLEup8BdnIbPwQJYk8z8FI5kdx9H", clientKey: "4NoWE5LNZwQimx8lXw3HZx5KmGKYHEDoQV2aLBYh")
+        PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(nil, block: nil)
+        UINavigationBar.appearance().barTintColor = UIColor.brapBrandColor()
+        UINavigationBar.appearance().tintColor = UIColor.brapWhiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.brapWhiteColor()]
+        Fabric.with([Twitter()])
+
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        AppFlow.defaultFlow.start()
+        //initThirdPartyServices()
+
         return true
     }
 
